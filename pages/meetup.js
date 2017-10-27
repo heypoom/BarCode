@@ -6,6 +6,7 @@ import React from 'react'
 // Location
 // Theme
 // Gang Member’s Info (Card Slider)
+// Who Has Arrived?
 
 const MeetupDetail = () => <div />
 

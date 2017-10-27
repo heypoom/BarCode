@@ -10,17 +10,6 @@ import React from 'react'
 //  Theme: E.g. Clojure, Functional Programming, Category Theory, Agile
 //  Gang Members: E.g. Alice, Bob, Charlie, Sia O (4 People)
 
-// BarCode Activities:
-//   Sharing Session
-//   Pair Programming
-//   Mob Programming
-//   Group Learning
-//   Mock Interview
-//   Code Review
-//   Hackathon
-//   Pitches
-//   Workshops
-
 const CreateMeetup = () => <div />
 
 export default CreateMeetup
