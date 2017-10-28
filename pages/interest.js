@@ -125,35 +125,55 @@ const Progress = styled.div`
   transition: all 1s cubic-bezier(0.22, 0.61, 0.36, 1);
 `
 
+const TextInput = styled.input`
+  background: #ffffff;
+  border: none;
+  border-bottom: 2px solid #555;
+  padding: 0.3em 1em;
+  font-size: 1.2em;
+  font-weight: 300;
+  outline: none;
+  color: #333;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  transition: 1s cubic-bezier(0.22, 0.61, 0.36, 1) all;
+  width: 100%;
+  margin-bottom: 1.2em;
+`
+
 const steps = [
   <div>
     <Desc>
-      Hello! <br />
-      We're going to let other developers see your GitHub Profile
+      <b>Welcome!</b> Let's get to know each other. <br />
+      We'll let other developers to know you by your GitHub profile.
     </Desc>
   </div>,
   <Desc>
-    That's Awesome! <br />
+    <b>That's Awesome!</b> <br />
     Now, let's choose some stickers that you're interested in! Pick the stickers
     that match your interest.
   </Desc>,
   <div>
     <Desc>
-      This is almost it! <br />
-      We're going to let other developers see your GitHub Profile
+      <b>Fantastic!</b> <br />
+      Could you tell us about your job title? (E.g. Full Stack, Frontend,
+      Backend)
     </Desc>
+    <TextInput placeholder="My Job Title" key="x" />
   </div>,
   <div>
     <Desc>
-      This is almost it! <br />
-      We're going to let other developers see your GitHub Profile
+      <b>Cool~</b> <br />
+      What does interest you the most? (E.g. Agile, Space, Functional
+      Programming)
     </Desc>
+    <TextInput placeholder="My Geek Interests" key="y" />
   </div>,
   <div>
     <Desc>
-      This is almost it! <br />
-      We're going to let other developers see your GitHub Profile
+      <b>This is almost it!</b> <br />
+      Could you tell us what do you enjoy doing, aside programming?
     </Desc>
+    <TextInput placeholder="My Hobbies" key="z" />
   </div>
 ]
 
