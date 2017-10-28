@@ -11,7 +11,7 @@ const composeEnhancers =
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     : compose
 
-export const reducers = combineReducers({})
+export const reducers = combineReducers({app})
 const store = createStore(reducers, composeEnhancers(applyMiddleware(saga)))
 
 function* rootSaga() {
