@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
-import styled, {injectGlobal, keyframes} from 'react-emotion'
+import {injectGlobal, keyframes, css} from 'emotion'
+import styled from 'react-emotion'
 
 import Button from './Button'
 
 injectGlobal`
   body {
     margin: 0;
+    overflow: hidden;
     background: url(https://kazzkiq.github.io/CodeFlask.js/img/bg-main_2x.png) #3d3a4e;
   }
 `
@@ -29,10 +31,20 @@ const slideRight = keyframes`
   }
 `
 
+const slideLeft = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    margin-right: -100vw;
+  }
+`
+
 const FlexContainer = styled.div`
   display: flex;
   justify-content: center;
-  animation: ${fadeIn} 1s ease 1;
+  animation: ${props => props.animation} 1s ease 1;
 `
 
 const Container = styled.div`
@@ -91,6 +103,7 @@ class CardSlider extends Component {
     this.state = {
       xDown: null,
       yDown: null,
+      animation: fadeIn,
     }
   }
   componentDidMount() {
@@ -115,9 +128,13 @@ class CardSlider extends Component {
 
     if (Math.abs(xDiff) > Math.abs(yDiff)) {
       if (xDiff > 0) {
-        console.log('You swipe left')
+        this.setState({
+          animation: slideRight,
+        })
       } else {
-        console.log('You swipe rightj')
+        this.setState({
+          animation: slideLeft,
+        })
       }
     }
 
@@ -128,7 +145,7 @@ class CardSlider extends Component {
   }
   render() {
     return (
-      <FlexContainer>
+      <FlexContainer animation={this.state.animation}>
         <Container>
           <Padding>
             <UsernameLabel>Chun Rapeepat</UsernameLabel>
