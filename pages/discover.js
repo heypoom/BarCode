@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {Component} from 'react'
+import CardSlider from '../components/CardSlider'
 
 // Flow 2.1
 // (Gather People with Same Interest)
@@ -9,6 +10,14 @@ import React from 'react'
 //   Action: Invite People
 //   Shown according to location (nearest first + interests)
 
-const Discover = () => <div />
+class Discover extends Component {
+  render() {
+    return (
+      <div>
+        <CardSlider></CardSlider>
+      </div>
+    )
+  }
+}
 
 export default Discover
