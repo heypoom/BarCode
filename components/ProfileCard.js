@@ -35,10 +35,9 @@ const ImageProfile = styled.div`
 `
 const FooterContainer = styled.div`
   width: 100%;
-  position: absolute;
-  bottom: 10px;
   background: #fafafa;
   border-top: 1px solid #ccc;
+  margin-top: 1em;
 `
 
 const Description = styled.div`

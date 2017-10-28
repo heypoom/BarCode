@@ -35,37 +35,22 @@ const slideLeft = keyframes`
   }
 `
 
-const FlexContainer = styled.div`
-  display: flex;
-  justify-content: center;
+const Card = styled.div`
   animation: ${props => props.animation};
   animation-fill-mode: forwards;
-`
 
-const Container = styled.div`
-  position: absolute;
-  overflow: hidden;
-  width: calc(100vw - 20px);
   background: white;
-  border-radius: 7px;
-  height: calc(100vh - 20px);
-  margin-top: 10px;
-  overflow: none;
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  position: relative;
 `
 
 @App
 export default class CardSlider extends Component {
-  constructor() {
-    super()
-    this.state = {
-      xDown: null,
-      yDown: null,
-      animation: `${fadeIn} 1s ease 1`
-    }
+  state = {
+    xDown: null,
+    yDown: null,
+    animation: `${fadeIn} 1s ease 1`
   }
+
   componentDidMount() {
     if (document != undefined) {
       document.addEventListener(
@@ -80,12 +65,14 @@ export default class CardSlider extends Component {
       )
     }
   }
+
   handleTouchStart(event) {
     this.setState({
       xDown: event.touches[0].clientX,
       yDown: event.touches[0].clientY
     })
   }
+
   handleTouchMove(event) {
     if (!this.state.xDown || !this.state.yDown) {
       return
@@ -111,13 +98,12 @@ export default class CardSlider extends Component {
       yDown: null
     })
   }
+
   render() {
     return (
-      <FlexContainer animation={this.state.animation}>
-        <Container>
-          <ProfileCard name={this.props.name} nickname={this.props.nickname} />
-        </Container>
-      </FlexContainer>
+      <Card animation={this.state.animation}>
+        <ProfileCard name={this.props.name} nickname={this.props.nickname} />
+      </Card>
     )
   }
 }
