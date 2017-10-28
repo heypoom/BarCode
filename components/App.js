@@ -16,9 +16,8 @@ const enhance = lifecycle({
     injectGlobal`
       body {
         margin: 0;
-        font-family: Roboto, sans-serif;
         font-weight: 300;
-        font-family: Saira Semi Condensed;
+        font-family: Saira Semi Condensed, sans-serif;
       }
 
       * {
