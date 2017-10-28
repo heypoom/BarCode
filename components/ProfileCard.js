@@ -32,6 +32,7 @@ const ImageProfile = styled.div`
   border-radius: 50%;
   background: url(${props => props.img}) center center;
   background-size: 100px 100px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 `
 const FooterContainer = styled.div`
   width: 100%;
@@ -70,7 +71,7 @@ const Button = styled(StandardButton)`
   display: block;
 `
 
-const Padding = styled.div`padding: 20px;`
+const Padding = styled.div`padding: 20px 60px;`
 
 const UsernameLabel = styled.h1`
   width: 100%;

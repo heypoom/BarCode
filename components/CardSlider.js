@@ -38,6 +38,7 @@ const slideLeft = keyframes`
 const Card = styled.div`
   animation: ${props => props.animation};
   animation-fill-mode: forwards;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 
   background: white;
   position: relative;

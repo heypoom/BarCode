@@ -34,11 +34,26 @@ const Container = styled.div`
   padding: 1.1em;
 `
 
+const Header = styled.div`
+  position: fixed;
+  left: 0;
+  top: 0;
+  color: #555;
+  width: 100%;
+  padding: 0.4em;
+  background: white;
+  text-align: center;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+`
+
 @App
 export default class Discover extends Component {
   render() {
     return (
       <Backdrop>
+        <Header>
+          <b>You</b> Developers Near You -- Invite Them to Meetup!
+        </Header>
         <Container>
           <CardSlider name="Rapeepat Kaewprasit" nickname="Chun" />
         </Container>
