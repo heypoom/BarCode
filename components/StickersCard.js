@@ -39,6 +39,10 @@ const Col = styled.div`
 
   margin: 0.6em 0;
   width: 15%;
+
+  @media screen and (max-width: 580px) {
+    width: 25%;
+  }
 `
 
 const Sticker = styled.img`

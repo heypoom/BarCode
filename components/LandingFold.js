@@ -85,6 +85,13 @@ const HeroIcon = styled.div`
   animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
   transition: all 1s cubic-bezier(0.22, 0.61, 0.36, 1);
 
+  @media screen and (max-width: 580px) {
+    min-width: 7em;
+    min-height: 7em;
+    margin-bottom: 1.8em;
+    margin-bottom: 1.8em;
+  }
+
   &:hover {
     transform: scale(1.2);
     filter: brightness(1.2);
@@ -100,12 +107,25 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   margin: 0 auto;
+
+  @media screen and (max-width: 580px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `
 
 const Header = styled.header`
   display: flex;
   flex-direction: column;
   margin-left: 8em;
+  padding: 0.8em;
+
+  @media screen and (max-width: 580px) {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: 0;
+  }
 `
 
 const Heading = styled.h2`
@@ -114,6 +134,13 @@ const Heading = styled.h2`
   font-family: Saira Semi Condensed, sans-serif;
   font-weight: 300;
   font-size: 3.4em;
+
+  flex-direction: column;
+
+  @media screen and (max-width: 580px) {
+    font-size: 2.1em;
+    margin-bottom: 0.3em;
+  }
 `
 
 const Desc = styled.p`

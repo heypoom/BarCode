@@ -40,6 +40,10 @@ const Container = styled.div`
   height: 100%;
   min-height: 100vh;
   padding: 3em 2.3em;
+
+  @media screen and (max-width: 800px) {
+    padding: 2.5em 1.5em;
+  }
 `
 
 const fadeIn = keyframes`
@@ -60,6 +64,10 @@ export const Card = styled.div`
 
   animation-name: ${fadeIn};
   animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  @media screen and (max-width: 580px) {
+    min-width: initial;
+  }
 `
 
 const Heading = styled.h2`
