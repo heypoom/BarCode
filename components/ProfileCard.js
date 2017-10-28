@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'react-emotion'
+import Link from 'next/link'
 
 import StandardButton from './Button'
 
@@ -64,11 +65,13 @@ const StickerLabel = styled.span`
   text-align: center;
   display: block;
   color: #999;
+  padding-bottom: 0.5em;
 `
 
 const Button = styled(StandardButton)`
   width: 100%;
   display: block;
+  position: relative;
 `
 
 const Padding = styled.div`padding: 20px 60px;`
@@ -80,8 +83,10 @@ const UsernameLabel = styled.h1`
   text-align: center;
 `
 
-const ProfileCard = ({name, nickname}) => (
-  <div>
+const CardWrapper = styled.div`background: white;`
+
+const ProfileCard = ({name, nickname, invited}) => (
+  <CardWrapper>
     <Padding>
       <UsernameLabel>
         {name}
@@ -103,12 +108,16 @@ const ProfileCard = ({name, nickname}) => (
       <Sticker src="/static/stickers/graphql.png" />
     </StickerContainer>
     <StickerLabel>and 16 others...</StickerLabel>
-    <FooterContainer>
-      <Padding>
-        <Button color="#ff7657">Invite</Button>
-      </Padding>
-    </FooterContainer>
-  </div>
+    {!invited && (
+      <FooterContainer>
+        <Padding>
+          <Link href="/create" passHref>
+            <Button color="#ff7657">Invite</Button>
+          </Link>
+        </Padding>
+      </FooterContainer>
+    )}
+  </CardWrapper>
 )
 
 export default ProfileCard

@@ -65,7 +65,7 @@ export const Card = styled.div`
   animation-name: ${fadeIn};
   animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 500px) {
     min-width: initial;
   }
 `
@@ -101,12 +101,12 @@ export const Button = styled(StandardButton)`
   }
 `
 
-const CardBody = styled.div`
+export const CardBody = styled.div`
   padding: 1.5em 1.8em;
   background: white;
 `
 
-const CardImage = styled.div`
+export const CardImage = styled.div`
   position: relative;
   background-color: white;
   background-image: url(/static/${props => props.img}.svg);
