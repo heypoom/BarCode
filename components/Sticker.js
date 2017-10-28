@@ -1,6 +1,7 @@
 import React from 'react'
 
-//  Stickers: React, Redux, JavaScript, Scala, Kubernetes, Go, Node, Clojure, Kotlin
+// Stickers
+// React, Redux, JavaScript, Scala, Kubernetes, Go, Node, Clojure, Kotlin
 
 const Sticker = () => <div />
 

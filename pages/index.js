@@ -1,20 +1,19 @@
 import React from 'react'
+import {keyframes} from 'emotion'
 import styled from 'react-emotion'
 
 import App from '../components/App'
+import Fold from '../components/LandingFold'
 
 const Page = styled.div`
   display: flex;
-  align-items: center;
 
   width: 100%;
   min-height: 100vh;
-  background: #efefef;
+  background: #ffffff;
 `
 
 const Nav = () => <nav />
-
-const Fold = () => <section />
 
 const Reason = () => <section />
 

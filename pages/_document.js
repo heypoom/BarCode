@@ -38,7 +38,7 @@ export default class BaseDocument extends Document {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style dangerouslySetInnerHTML={{__html: this.props.css}} />
         <link
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400"
+          href="https://fonts.googleapis.com/css?family=Saira+Semi+Condensed"
           rel="stylesheet"
         />
       </Head>

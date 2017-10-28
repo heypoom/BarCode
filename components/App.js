@@ -18,6 +18,7 @@ const enhance = lifecycle({
         margin: 0;
         font-family: Roboto, sans-serif;
         font-weight: 300;
+        font-family: Saira Semi Condensed;
       }
 
       * {
@@ -28,10 +29,11 @@ const enhance = lifecycle({
 })
 
 // This HoC (Higher-Order Component) allows us to inject Providers into each page.
-const App = Component => enhance(props => (
-  <Provider store={store}>
-    <Component {...props} />
-  </Provider>
-))
+const App = Component =>
+  enhance(props => (
+    <Provider store={store}>
+      <Component {...props} />
+    </Provider>
+  ))
 
 export default App
