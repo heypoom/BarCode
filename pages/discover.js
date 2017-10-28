@@ -14,7 +14,7 @@ class Discover extends Component {
   render() {
     return (
       <div>
-        <CardSlider></CardSlider>
+        <CardSlider name="Rapeepat Kaewprasit" nickname="Chun"/>
       </div>
     )
   }

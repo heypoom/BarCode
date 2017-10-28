@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {injectGlobal, keyframes, css} from 'emotion'
 import styled from 'react-emotion'
 
-import Button from './Button'
+import StandardButton from './Button'
 
 injectGlobal`
   body {
@@ -41,10 +41,16 @@ const slideLeft = keyframes`
   }
 `
 
+const Button = styled(StandardButton)`
+  width: 100%;
+  display: block;
+`
+
 const FlexContainer = styled.div`
   display: flex;
   justify-content: center;
-  animation: ${props => props.animation} 1s ease 1;
+  animation: ${props => props.animation};
+  animation-fill-mode: forwards;
 `
 
 const Container = styled.div`
@@ -73,6 +79,11 @@ const UsernameLabel = styled.h1`
   text-align: center;
 `
 
+const NicknameLabel = styled.span`
+  font-weight: 300;
+  font-size: 0.8em;
+`
+
 const ImageProfile = styled.div`
   width: 100px;
   height: 100px;
@@ -97,13 +108,32 @@ const Description = styled.div`
   padding: 15px;
 `
 
+const StickerContainer = styled.div`
+  display: flex;
+  item-align: center;
+`
+
+const Sticker = styled.img`
+  width: 20px;
+  height: 55px;
+  flex: 1;
+  padding: 15px 20px;
+`
+
+const StickerLabel = styled.span`
+  font-family: sans-serif;
+  text-align: center;
+  display: block;
+  color: #999;
+`
+
 class CardSlider extends Component {
   constructor() {
     super()
     this.state = {
       xDown: null,
       yDown: null,
-      animation: fadeIn,
+      animation: `${fadeIn} 1s ease 1`,
     }
   }
   componentDidMount() {
@@ -129,11 +159,11 @@ class CardSlider extends Component {
     if (Math.abs(xDiff) > Math.abs(yDiff)) {
       if (xDiff > 0) {
         this.setState({
-          animation: slideRight,
+          //animation: `${slideRight} 0.3s ease 1`,
         })
       } else {
         this.setState({
-          animation: slideLeft,
+          //animation: `${slideLeft} 0.3s ease 1`,
         })
       }
     }
@@ -148,16 +178,23 @@ class CardSlider extends Component {
       <FlexContainer animation={this.state.animation}>
         <Container>
           <Padding>
-            <UsernameLabel>Chun Rapeepat</UsernameLabel>
+            <UsernameLabel>{this.props.name}<br /><NicknameLabel>({this.props.nickname})</NicknameLabel></UsernameLabel>
             <ImageProfile img='https://scontent.fbkk2-3.fna.fbcdn.net/v/t1.0-9/18670762_758600700980955_3631810700133395059_n.jpg?_nc_eui2=v1%3AAeFMh6JojbUoYo7JihFhz_a-QbImN6UZa5QE733NBRpBSTutxq_PBZGxxYqMKa1ChRmvOBg7CoSsNtHY6DyFF83Z0T-2Aacude_WEcl-wV5oug&oh=c0321f0d2cab01cd347691d1b3f91c84&oe=5AAF3B44'></ImageProfile>
           </Padding>
           <Description>
-            {`Hello, my name is Chun Rapeepat, Full-Stack Web Developer from Thailand. I'm interested in Innovation, Design, Programming, Web, Startup and more...
+            {`Hello, my name is Chun Rapeepat, I'm Full-Stack Web Developer from Thailand. I'm interested in Innovation, Design, Programming, Web, Startup, Facebook and more...
     `}
           </Description>
+          <StickerContainer>
+            <Sticker src='/static/stickers/react.svg'/>
+            <Sticker src='/static/stickers/redux.png'/>
+            <Sticker src='/static/stickers/apollo.png'/>
+            <Sticker src='/static/stickers/graphql.png'/>
+          </StickerContainer>
+          <StickerLabel>and 16 others...</StickerLabel>
           <FooterContainer>
             <Padding>
-              <Button color="#E8893F">+ Add Friend</Button>
+              <Button color="#E8893F">Invite</Button>
             </Padding>
           </FooterContainer>
         </Container>
