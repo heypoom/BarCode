@@ -6,8 +6,9 @@ import Ink from 'react-ink'
 
 import App from '../components/App'
 import StandardButton from '../components/Button'
+import StickersCard from '../components/StickersCard'
 
-import {next, prev, toggleSticker} from '../ducks/app'
+import {next, prev} from '../ducks/app'
 
 // Flow 1.2
 // What's Your Interest?
@@ -52,7 +53,7 @@ const fadeIn = keyframes`
   }
 `
 
-const Card = styled.div`
+export const Card = styled.div`
   position: relative;
   min-width: 30em;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -82,7 +83,7 @@ const Small = styled.div`
   font-weight: 300;
 `
 
-const Button = styled(StandardButton)`
+export const Button = styled(StandardButton)`
   width: 100%;
   box-shadow: 0 2px 5px 0 rgba(255, 118, 87, 0.44);
   border-radius: 1em;
@@ -114,55 +115,6 @@ const Progress = styled.div`
   background: white;
   box-shadow: 0 2px 5px 0 white, 0 2px 10px 0 white;
   transition: all 1s cubic-bezier(0.22, 0.61, 0.36, 1);
-`
-
-const Sticker = styled.img`
-  transition: all 1s cubic-bezier(0.22, 0.61, 0.36, 1);
-
-  width: 3em;
-  height: 3em;
-  cursor: pointer;
-
-  mix-blend-mode: multiply;
-  filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.1))
-    ${props => (props.selected ? 'brightness(1.1)' : 'saturate(0)')};
-
-  &:hover {
-    transform: scale(1.1);
-  }
-`
-
-const stickers = [
-  'angular.svg',
-  'graphcool.png',
-  'redis.svg',
-  'vue.png',
-  'apollo.png',
-  'graphql.png',
-  'python.png',
-  'redux.png',
-  'firebase.png',
-  'node.png',
-  'react.svg',
-  'relay.svg'
-]
-
-const Row = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-flow: wrap;
-
-  margin-bottom: 1em;
-`
-
-const Col = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin: 0.6em 0;
-  width: 15%;
 `
 
 const steps = [
@@ -211,9 +163,9 @@ const stepImages = ['circle', 'circle', 'circle', 'circle', 'circle']
 
 const stepButtons = [
   'Login with GitHub',
-  'Next',
-  'Next',
-  'Next',
+  'Continue',
+  'Continue',
+  'Continue',
   'Create Your Profile'
 ]
 
@@ -231,34 +183,7 @@ const Back = styled.div`
   cursor: pointer;
 `
 
-const StickerCardBody = styled(CardBody)`
-  background: #f7f7f9;
-  margin-top: 1.8em;
-`
-
-const StickerCard = ({next, step, onChange, value}) => (
-  <Card>
-    <StickerCardBody>
-      <Row>
-        {stickers.map((sticker, index) => (
-          <Col key={index}>
-            <Sticker
-              src={`/static/stickers/${sticker}`}
-              onClick={() => onChange(index)}
-              selected={value[index]}
-            />
-          </Col>
-        ))}
-      </Row>
-
-      <Button color="#ff7657" onClick={next}>
-        {stepButtons[step]}
-      </Button>
-    </StickerCardBody>
-  </Card>
-)
-
-const OnboardCard = ({toggleSticker, stickers, step, prev, next}) => (
+const OnboardCard = ({step, prev, next}) => (
   <div>
     <Card>
       <Progress value={(step + 1) * 20} />
@@ -278,26 +203,20 @@ const OnboardCard = ({toggleSticker, stickers, step, prev, next}) => (
       </CardBody>
     </Card>
     {step === 1 && (
-      <StickerCard
-        next={next}
-        step={step}
-        onChange={toggleSticker}
-        value={stickers}
-      />
+      <StickersCard>
+        <Button color="#ff7657" onClick={next}>
+          {stepButtons[step]}
+        </Button>
+      </StickersCard>
     )}
   </div>
 )
 
 const mapStateToProps = state => ({
-  step: state.app.step,
-  stickers: state.app.stickers
+  step: state.app.step
 })
 
-const ConnectedOnboardCard = connect(mapStateToProps, {
-  toggleSticker,
-  prev,
-  next
-})(OnboardCard)
+const ConnectedOnboardCard = connect(mapStateToProps, {prev, next})(OnboardCard)
 
 const OnboardView = () => (
   <Backdrop>

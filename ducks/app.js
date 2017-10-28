@@ -17,12 +17,17 @@ const initial = {
 
 export default createReducer(initial, state => ({
   [NEXT_STEP]: () => {
-    console.info('Step', state.step + 1)
-
-    return {
-      ...state,
-      step: state.step + 1
+    if (state.step === 4) {
+      Router.push('/discover')
+      return state
+    } else if (state.step < 4) {
+      return {
+        ...state,
+        step: state.step + 1
+      }
     }
+
+    return state
   },
   [PREV_STEP]: () => {
     if (state.step > 0) return {...state, step: state.step - 1}
