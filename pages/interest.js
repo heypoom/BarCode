@@ -1,11 +1,14 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {keyframes} from 'emotion'
 import styled from 'react-emotion'
-import Router from 'next/router'
 import Ink from 'react-ink'
 
 import App from '../components/App'
 import StandardButton from '../components/Button'
+import StickersCard from '../components/StickersCard'
+
+import {next, prev} from '../ducks/app'
 
 // Flow 1.2
 // What's Your Interest?
@@ -36,6 +39,7 @@ const Container = styled.div`
   max-width: 800px;
   height: 100%;
   min-height: 100vh;
+  padding: 3em 2.3em;
 `
 
 const fadeIn = keyframes`
@@ -49,13 +53,12 @@ const fadeIn = keyframes`
   }
 `
 
-const Card = styled.div`
+export const Card = styled.div`
   position: relative;
   min-width: 30em;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 
   animation-name: ${fadeIn};
-  animation-duration: 1s;
   animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
 `
 
@@ -80,7 +83,7 @@ const Small = styled.div`
   font-weight: 300;
 `
 
-const Button = styled(StandardButton)`
+export const Button = styled(StandardButton)`
   width: 100%;
   box-shadow: 0 2px 5px 0 rgba(255, 118, 87, 0.44);
   border-radius: 1em;
@@ -108,7 +111,7 @@ const CardImage = styled.div`
 
 const Progress = styled.div`
   height: 3px;
-  width: ${props => props.is || 100}%;
+  width: ${props => props.value || 100}%;
   background: white;
   box-shadow: 0 2px 5px 0 white, 0 2px 10px 0 white;
   transition: all 1s cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -121,12 +124,11 @@ const steps = [
       We're going to let other developers see your GitHub Profile
     </Desc>
   </div>,
-  <div>
-    <Desc>
-      Hello! <br />
-      We're going to let other developers see your GitHub Profile
-    </Desc>
-  </div>,
+  <Desc>
+    That's Awesome! <br />
+    Now, let's choose some stickers that you're interested in! Pick the stickers
+    that match your interest.
+  </Desc>,
   <div>
     <Desc>
       This is almost it! <br />
@@ -161,9 +163,9 @@ const stepImages = ['circle', 'circle', 'circle', 'circle', 'circle']
 
 const stepButtons = [
   'Login with GitHub',
-  'Next',
-  'Next',
-  'Next',
+  'Continue',
+  'Continue',
+  'Continue',
   'Create Your Profile'
 ]
 
@@ -181,42 +183,45 @@ const Back = styled.div`
   cursor: pointer;
 `
 
-class OnboardCard extends Component {
-  state = {step: 0}
-
-  next = () => {
-    if (this.state.step === 4) {
-      Router.push('/discover')
-    } else if (this.state.step < 4) {
-      this.setState({step: this.state.step + 1})
-    }
-  }
-
-  prev = () => this.state.step > 0 && this.setState({step: this.state.step - 1})
-
-  render = () => (
+const OnboardCard = ({step, prev, next}) => (
+  <div>
     <Card>
-      <Progress is={(this.state.step + 1) * 20} />
-      <Back onClick={this.prev} />
-      <CardImage img={stepImages[this.state.step]}>
+      <Progress value={(step + 1) * 20} />
+      <Back onClick={prev} />
+      <CardImage img={stepImages[step]}>
         <Ink />
       </CardImage>
       <CardBody>
-        <Small>Step {this.state.step + 1}</Small>
-        <Heading>{stepNames[this.state.step]}</Heading>
-        <Steps step={this.state.step} />
-        <Button color="#ff7657" onClick={this.next}>
-          {stepButtons[this.state.step]}
-        </Button>
+        <Small>Step {step + 1}</Small>
+        <Heading>{stepNames[step]}</Heading>
+        <Steps step={step} />
+        {step !== 1 && (
+          <Button color="#ff7657" onClick={next}>
+            {stepButtons[step]}
+          </Button>
+        )}
       </CardBody>
     </Card>
-  )
-}
+    {step === 1 && (
+      <StickersCard>
+        <Button color="#ff7657" onClick={next}>
+          {stepButtons[step]}
+        </Button>
+      </StickersCard>
+    )}
+  </div>
+)
+
+const mapStateToProps = state => ({
+  step: state.app.step
+})
+
+const ConnectedOnboardCard = connect(mapStateToProps, {prev, next})(OnboardCard)
 
 const OnboardView = () => (
   <Backdrop>
     <Container>
-      <OnboardCard />
+      <ConnectedOnboardCard />
     </Container>
   </Backdrop>
 )
