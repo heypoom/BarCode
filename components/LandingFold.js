@@ -85,11 +85,10 @@ const HeroIcon = styled.div`
   animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
   transition: all 1s cubic-bezier(0.22, 0.61, 0.36, 1);
 
-  @media screen and (max-width: 580px) {
-    min-width: 7em;
-    min-height: 7em;
-    margin-bottom: 1.8em;
-    margin-bottom: 1.8em;
+  @media screen and (max-width: 900px) {
+    min-width: 9.5em;
+    min-height: 9.5em;
+    margin-bottom: 1.4em;
   }
 
   &:hover {
@@ -107,10 +106,12 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   margin: 0 auto;
+  padding: 0 2.5em;
 
-  @media screen and (max-width: 580px) {
+  @media screen and (max-width: 900px) {
     flex-direction: column;
     justify-content: center;
+    padding: 0;
   }
 `
 
@@ -120,7 +121,7 @@ const Header = styled.header`
   margin-left: 8em;
   padding: 0.8em;
 
-  @media screen and (max-width: 580px) {
+  @media screen and (max-width: 900px) {
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -137,7 +138,7 @@ const Heading = styled.h2`
 
   flex-direction: column;
 
-  @media screen and (max-width: 580px) {
+  @media screen and (max-width: 900px) {
     font-size: 2.1em;
     margin-bottom: 0.3em;
   }

@@ -65,7 +65,7 @@ export const Card = styled.div`
   animation-name: ${fadeIn};
   animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
 
-  @media screen and (max-width: 580px) {
+  @media screen and (max-width: 900px) {
     min-width: initial;
   }
 `
